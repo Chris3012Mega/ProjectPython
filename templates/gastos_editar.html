@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Gasto</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #faf3ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.08);
+            width: 350px;
+        }
+        h2 {
+            text-align: center;
+            color: #6e52d9;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #6e52d9;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #5a3ebe;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #6e52d9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>Editar Gasto</h2>
+    <form method="POST">
+        <label>Monto (S/)</label>
+        <input type="number" step="0.01" name="monto" value="{{ gasto.monto }}" required>
+
+        <label>Categoría</label>
+        <select name="categoria" required>
+            <option value="Comida" {% if gasto.categoria == 'Comida' %}selected{% endif %}>Comida</option>
+            <option value="Transporte" {% if gasto.categoria == 'Transporte' %}selected{% endif %}>Transporte</option>
+            <option value="Entretenimiento" {% if gasto.categoria == 'Entretenimiento' %}selected{% endif %}>Entretenimiento</option>
+            <option value="Compras" {% if gasto.categoria == 'Compras' %}selected{% endif %}>Compras</option>
+            <option value="Salud" {% if gasto.categoria == 'Salud' %}selected{% endif %}>Salud</option>
+            <option value="Educación" {% if gasto.categoria == 'Educación' %}selected{% endif %}>Educación</option>
+        </select>
+
+        <label>Descripción</label>
+        <textarea name="descripcion">{{ gasto.descripcion }}</textarea>
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <a href="/gastos">⬅ Volver a Mis Gastos</a>
+</div>
+</body>
+</html>

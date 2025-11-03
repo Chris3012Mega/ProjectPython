@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Gastos</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #faf3ff;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            color: #6e52d9;
+            margin-top: 30px;
+        }
+        .contenedor {
+            width: 90%;
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            color: #6e52d9;
+            font-size: 15px;
+        }
+        .total-box {
+            margin-top: 20px;
+            background: #6e52d9;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 18px;
+        }
+        .btn-registrar {
+            display: block;
+            text-align: center;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #6e52d9;
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .btn-registrar:hover {
+            background: #5a3ebe;
+        }
+        .accion {
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 4px;
+        }
+        .editar {
+            color: #6e52d9;
+        }
+        .eliminar {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Mis Gastos</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div style="width:80%;max-width:600px;margin:15px auto;">
+      {% for category, message in messages %}
+        <div style="
+          background:{% if category=='success' %}#c7ffd4{% elif category=='info' %}#cfe8ff{% elif category=='danger' %}#ffd6d6{% else %}#eee{% endif %};
+          color:#333;
+          padding:12px;
+          border-radius:10px;
+          text-align:center;
+          margin-bottom:10px;
+          box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        ">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div class="contenedor">
+    {% if gastos %}
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Categoría</th>
+            <th>Monto</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        {% for g in gastos %}
+        <tr>
+            <td>{{ g.fecha.strftime('%Y-%m-%d') }}</td>
+            <td>{{ g.categoria }}</td>
+            <td>S/ {{ "%.2f"|format(g.monto) }}</td>
+            <td>{{ g.descripcion or '-' }}</td>
+            <td>
+                <a href="/gastos/editar/{{ g.id }}" class="accion editar">✏️</a>
+                <a href="/gastos/eliminar/{{ g.id }}" class="accion eliminar">🗑️</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="total-box">
+        Total Gastado: S/ {{ "%.2f"|format(total or 0) }}
+    </div>
+    {% else %}
+    <p style="text-align:center; color:#777;">Aún no tienes gastos registrados.</p>
+    {% endif %}
+
+    <a href="/gastos/registrar" class="btn-registrar">Registrar nuevo gasto</a>
+</div>
+
+</body>
+</html>
