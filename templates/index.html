@@ -1,90 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Ahorro Inteligente</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AHORRA+ | Control Inteligente</title>
 
-  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Iconos -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background: linear-gradient(135deg, #1e90ff, #00c6ff);
-            min-height: 100vh;
-            color: #fff;
-        }
-        .titulo {
-            font-size: 45px;
-            font-weight: 800;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-        }
-        .card-tip {
-            border-radius: 15px;
-            transition: .3s;
-        }
-        .card-tip:hover {
-            transform: scale(1.05);
-        }
-    </style>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e90ff, #00c6ff);
+      min-height: 100vh;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .titulo {
+      font-size: 48px;
+      font-weight: 800;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .subtitulo {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .card-tip {
+      border-radius: 18px;
+      transition: all .3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    }
+
+    .card-tip:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 22px rgba(0,0,0,.2);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-size: 20px;
+    }
+
+    .btn-rounded {
+      border-radius: 20px;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      opacity: .7;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-dark px-4">
-        <h3 class="navbar-brand">AHORRA+</h3>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <a class="navbar-brand" href="/">💰 AHORRA+</a>
 
-        {% if usuario %}
-        <!-- Mostrar si el usuario ha iniciado sesión -->
-        <div>
-            <a href="/gastos" class="btn btn-outline-light">Mis Gastos</a>
-            <a href="/gastos/registrar" class="btn btn-light ms-2">Registrar Gasto</a>
-            <a href="/estadisticas" class="btn btn-outline-light ms-2">Ver Estadísticas</a>
+  <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-            <a href="/logout" class="btn btn-danger ms-2">Salir</a>
-        </div>
-        {% else %}
-        <!-- Mostrar si NO ha iniciado sesión -->
-        <div>
-            <a href="/login" class="btn btn-outline-light">Ingresar</a>
-            <a href="/registro" class="btn btn-light ms-2">Crear Cuenta</a>
-        </div>
-        {% endif %}
-    </nav>
+  <div id="menu" class="collapse navbar-collapse justify-content-between">
 
-    <div class="container text-center mt-5">
-        {% if usuario %}
-            <h1 class="titulo">Hola, {{ usuario }} 👋</h1>
-            <p class="mt-3 fs-5">Administra tus gastos, visualiza tu progreso y sigue cumpliendo tus metas.</p>
-        {% else %}
-            <h1 class="titulo">Bienvenido a tu futuro financiero</h1>
-            <p class="mt-3 fs-5">Aquí podrás registrar ingresos, controlar gastos y visualizar tu progreso para alcanzar tus metas.</p>
-        {% endif %}
+    {% if usuario %}
+      <div class="navbar-nav">
+        <a class="nav-link" href="/"><i class="fa fa-home"></i> Inicio</a>
+        <a class="nav-link" href="/gastos"><i class="fa fa-wallet"></i> Gastos</a>
+        <a class="nav-link" href="/gastos/registrar"><i class="fa fa-plus"></i> Registrar gasto</a>
+        <a class="nav-link" href="/ingresos"><i class="fa fa-coins"></i> Ingresos</a>
+        <a class="nav-link" href="/ingresos/registrar"><i class="fa fa-money-bill"></i> Registrar ingreso</a>
+        <a class="nav-link" href="/estadisticas"><i class="fa fa-chart-line"></i> Estadísticas</a>
+        <a class="nav-link" href="/meta"><i class="fa fa-bullseye"></i> Meta</a>
+      </div>
 
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card card-tip p-4 bg-light text-dark">
-                    <h4>Consejo #1</h4>
-                    <p>No ahorres lo que te sobra, ahorra primero y gasta lo demás.</p>
-                </div>
-            </div>
+      <div>
+        <span class="me-3">Hola, {{ usuario }}</span>
+        <a href="/logout" class="btn btn-danger btn-sm btn-rounded">
+          <i class="fa fa-sign-out-alt"></i> Salir
+        </a>
+      </div>
+    {% else %}
+      <div>
+        <a href="/login" class="btn btn-outline-light btn-rounded">Ingresar</a>
+        <a href="/registro" class="btn btn-light btn-rounded ms-2">Crear cuenta</a>
+      </div>
+    {% endif %}
 
-            <div class="col-md-4 mt-3 mt-md-0">
-                <div class="card card-tip p-4 bg-light text-dark">
-                    <h4>Consejo #2</h4>
-                    <p>Registrar tus gastos te ayuda a identificar fugas de dinero.</p>
-                </div>
-            </div>
+  </div>
+</nav>
 
-            <div class="col-md-4 mt-3 mt-md-0">
-                <div class="card card-tip p-4 bg-light text-dark">
-                    <h4>Consejo #3</h4>
-                    <p>Define metas claras de ahorro (ejemplo: laptop, viaje o emergencia).</p>
-                </div>
-            </div>
-        </div>
+<div class="container text-center mt-5">
+  {% if usuario %}
+    <h1 class="titulo">Hola, {{ usuario }} 👋</h1>
+    <p class="subtitulo">Controla tus finanzas y logra tus metas más rápido.</p>
+  {% else %}
+    <h1 class="titulo">Tu futuro financiero empieza hoy</h1>
+    <p class="subtitulo">Administra ingresos, controla gastos y cumple tus metas.</p>
+  {% endif %}
 
-        <p class="mt-5 fs-5">Tu disciplina de hoy te da libertad mañana.</p>
+  <div class="row mt-5">
+
+    <div class="col-md-4">
+      <div class="card card-tip p-4 bg-light text-dark">
+        <i class="fa fa-piggy-bank fa-2x text-primary mb-2"></i>
+        <h5>Ahorro Inteligente</h5>
+        <p>Establece metas mensuales y controla tu progreso.</p>
+      </div>
     </div>
+
+    <div class="col-md-4 mt-3 mt-md-0">
+      <div class="card card-tip p-4 bg-light text-dark">
+        <i class="fa fa-chart-line fa-2x text-success mb-2"></i>
+        <h5>Análisis Visual</h5>
+        <p>Observa tus gastos por categoría y mes.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4 mt-3 mt-md-0">
+      <div class="card card-tip p-4 bg-light text-dark">
+        <i class="fa fa-shield-alt fa-2x text-danger mb-2"></i>
+        <h5>Control Total</h5>
+        <p>Registra cada movimiento financiero.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    &copy; 2025 AHORRA+ | Proyecto académico Flask & MySQL
+  </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

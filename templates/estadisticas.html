@@ -1,113 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estadísticas Financieras</title>
+  <meta charset="UTF-8">
+  <title>Estadísticas | AHORRA+</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Iconos -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- ChartJS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <style>
-        body {
-            background: #f3f6fd;
-            font-family: 'Poppins', sans-serif;
-        }
-        nav {
-            background: #1e90ff;
-        }
-        .titulo {
-            color: #1e90ff;
-            font-weight: 700;
-            margin-top: 30px;
-            text-align: center;
-        }
-        .card-chart {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
-    </style>
+  <style>
+    body {
+      background: #f3f6fd;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .card-dashboard {
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 10px 18px rgba(0,0,0,.08);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .titulo {
+      font-weight: bold;
+      color: #1e90ff;
+      margin-top: 15px;
+    }
+
+    .card-chart {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 6px 14px rgba(0,0,0,.1);
+      height: 100%;
+    }
+
+    .progress {
+      height: 22px;
+      border-radius: 14px;
+    }
+
+    .progress-bar {
+      font-weight: bold;
+    }
+
+    .estado-ok { color: #2ecc71; }
+    .estado-alerta { color: #f1c40f; }
+    .estado-mal { color: #e74c3c; }
+  </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-dark px-4">
-    <h4 class="navbar-brand"> Estadísticas </h4>
-    <div>
-        <a href="/" class="btn btn-outline-light">Inicio</a>
-        <a href="/gastos" class="btn btn-light ms-2">Mis Gastos</a>
-        <a href="/logout" class="btn btn-danger ms-2">Salir</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <a class="navbar-brand" href="/">💰 AHORRA+</a>
+
+  <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="menu" class="collapse navbar-collapse justify-content-between">
+
+    <div class="navbar-nav">
+      <a class="nav-link" href="/"><i class="fa fa-home"></i> Inicio</a>
+      <a class="nav-link" href="/gastos"><i class="fa fa-wallet"></i> Gastos</a>
+      <a class="nav-link" href="/gastos/registrar"><i class="fa fa-plus"></i> Registrar Gasto</a>
+      <a class="nav-link" href="/ingresos"><i class="fa fa-coins"></i> Ingresos</a>
+      <a class="nav-link" href="/ingresos/registrar"><i class="fa fa-money-bill"></i> Registrar Ingreso</a>
+      <a class="nav-link active" href="/estadisticas"><i class="fa fa-chart-line"></i> Estadísticas</a>
+      <a class="nav-link" href="/meta"><i class="fa fa-bullseye"></i> Meta</a>
     </div>
+
+    <a href="/logout" class="btn btn-danger btn-sm btn-rounded">
+      <i class="fa fa-sign-out-alt"></i> Salir
+    </a>
+
+  </div>
 </nav>
 
 <div class="container mt-4">
-    <h2 class="titulo">Resumen Financiero de {{ usuario }}</h2>
 
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card-chart">
-                <h5 class="text-center mb-3">Gastos por Categoría</h5>
-                <canvas id="chartCategorias"></canvas>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card-chart">
-                <h5 class="text-center mb-3">Gastos Mensuales</h5>
-                <canvas id="chartMensual"></canvas>
-            </div>
-        </div>
+  <h2 class="titulo text-center">Resumen Financiero de {{ usuario }}</h2>
+
+  <!-- RESUMEN -->
+  <div class="row mt-4">
+
+    <div class="col-md-3 mb-3">
+      <div class="card-dashboard">
+        <i class="fa fa-coins fa-2x text-success"></i>
+        <h6>Ingresos</h6>
+        <strong>S/ {{ ingreso_mes }}</strong>
+      </div>
     </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card-dashboard">
+        <i class="fa fa-wallet fa-2x text-danger"></i>
+        <h6>Gastos</h6>
+        <strong>S/ {{ gasto_mes }}</strong>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card-dashboard">
+        <i class="fa fa-piggy-bank fa-2x text-primary"></i>
+        <h6>Ahorro</h6>
+        <strong>S/ {{ ahorro_real }}</strong>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card-dashboard">
+        <i class="fa fa-bullseye fa-2x text-warning"></i>
+        <h6>Meta</h6>
+        <strong>S/ {{ meta }}</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROGRESO META -->
+  <div class="card-dashboard mt-3">
+
+    <h5>🎯 Progreso de Meta</h5>
+    {% set porcentaje = (ahorro_real / meta * 100) if meta != 0 else 0 %}
+
+    <div class="progress">
+      <div class="progress-bar
+        {% if porcentaje >= 100 %}bg-success
+        {% elif porcentaje >= 70 %}bg-warning
+        {% else %}bg-danger{% endif %}
+      " style="width: {{ porcentaje|round(0) }}%">
+        {{ porcentaje|round(0) }} %
+      </div>
+    </div>
+
+    {% if ahorro_real >= meta %}
+      <p class="estado-ok mt-2">✅ Meta cumplida. ¡Excelente!</p>
+    {% elif ahorro_real >= meta * 0.7 %}
+      <p class="estado-alerta mt-2">⚠️ Vas bien, ajusta tus gastos.</p>
+    {% else %}
+      <p class="estado-mal mt-2">❌ Aún estás lejos de tu meta.</p>
+    {% endif %}
+
+  </div>
+
+  <!-- GRAFICOS -->
+  <div class="row mt-4">
+
+    <div class="col-md-6 mb-3">
+      <div class="card-chart">
+        <h6 class="text-center">📊 Gastos por Categoría</h6>
+        <canvas id="chartCategorias"></canvas>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="card-chart">
+        <h6 class="text-center">📈 Gastos por Mes</h6>
+        <canvas id="chartMensual"></canvas>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
 <script>
-    // Datos desde Flask
-    const categorias = {{ gastos_categoria | tojson }};
-    const mensual = {{ gastos_mes | tojson }};
+const categorias = {{ gastos_categoria | tojson }};
+const mensual = {{ gastos_mes | tojson }};
 
-    // Gráfico de Categorías
-    const ctx1 = document.getElementById('chartCategorias');
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: categorias.map(c => c.categoria),
-            datasets: [{
-                label: 'Gasto (S/)',
-                data: categorias.map(c => c.total),
-                backgroundColor: ['#1e90ff','#00c6ff','#8e44ad','#f1c40f','#e74c3c','#2ecc71'],
-                borderRadius: 8
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-        }
-    });
+// Categorías
+new Chart(document.getElementById('chartCategorias'), {
+  type: 'bar',
+  data: {
+    labels: categorias.map(x => x.categoria),
+    datasets: [{
+      data: categorias.map(x => x.total),
+      backgroundColor: ['#3498db','#9b59b6','#f1c40f','#e67e22','#e74c3c','#2ecc71'],
+      borderRadius: 10
+    }]
+  },
+  options: { plugins:{ legend:{ display:false }}, scales:{ y:{ beginAtZero:true }}}
+});
 
-    // Gráfico Mensual
-    const ctx2 = document.getElementById('chartMensual');
-    new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: mensual.map(m => m.mes),
-            datasets: [{
-                label: 'Gasto Total (S/)',
-                data: mensual.map(m => m.total),
-                fill: false,
-                borderColor: '#1e90ff',
-                tension: 0.3,
-                pointBackgroundColor: '#fff'
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-        }
-    });
+// Mensual
+new Chart(document.getElementById('chartMensual'), {
+  type: 'line',
+  data: {
+    labels: mensual.map(x => x.mes),
+    datasets: [{
+      data: mensual.map(x => x.total),
+      borderColor:'#3498db',
+      tension:.3
+    }]
+  },
+  options: { plugins:{ legend:{ display:false }}, scales:{ y:{ beginAtZero:true }}}
+});
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

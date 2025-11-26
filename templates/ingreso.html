@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registrar Gasto | AHORRA+</title>
+  <title>Registrar Ingreso | AHORRA+</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap -->
@@ -12,14 +12,14 @@
 
   <style>
     body {
-      background: linear-gradient(135deg, #6e52d9, #9271ff);
-      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e90ff, #00c6ff);
       min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
     }
 
     .card-form {
       background: white;
-      padding: 30px;
+      padding: 25px;
       border-radius: 20px;
       box-shadow: 0 10px 20px rgba(0,0,0,.15);
       max-width: 420px;
@@ -30,16 +30,11 @@
       border-radius: 18px;
     }
 
-    .form-control, .form-select {
-      border-radius: 12px;
-      font-size: 15px;
-    }
-
     .titulo {
       text-align: center;
+      color: #1e90ff;
       font-weight: bold;
-      color: #6e52d9;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .nota {
@@ -65,9 +60,10 @@
     <div class="navbar-nav">
       <a class="nav-link" href="/"><i class="fa fa-home"></i> Inicio</a>
       <a class="nav-link" href="/gastos"><i class="fa fa-wallet"></i> Gastos</a>
-      <a class="nav-link active" href="/gastos/registrar"><i class="fa fa-plus"></i> Nuevo Gasto</a>
-      <a class="nav-link" href="/ingresos"><i class="fa fa-coins"></i> Ingresos</a>
-      <a class="nav-link" href="/estadisticas"><i class="fa fa-chart-bar"></i> Estadísticas</a>
+      <a class="nav-link" href="/gastos/registrar"><i class="fa fa-plus"></i> Nuevo Gasto</a>
+      <a class="nav-link active" href="/ingresos/registrar"><i class="fa fa-coins"></i> Registrar Ingreso</a>
+      <a class="nav-link" href="/ingresos"><i class="fa fa-list"></i> Ver Ingresos</a>
+      <a class="nav-link" href="/estadisticas"><i class="fa fa-chart-line"></i> Estadísticas</a>
       <a class="nav-link" href="/meta"><i class="fa fa-bullseye"></i> Meta</a>
     </div>
 
@@ -79,46 +75,32 @@
 </nav>
 
 <div class="card-form">
-  <h3 class="titulo">Registrar Gasto</h3>
+  <h4 class="titulo">Registrar Ingreso</h4>
 
-  <form method="POST" action="/gastos/registrar">
+  <form method="POST">
 
     <div class="mb-3">
       <label class="form-label">💰 Monto</label>
-      <input type="number" step="0.01" name="monto" class="form-control" placeholder="0.00" required>
+      <input type="number" step="0.01" class="form-control" name="monto" placeholder="Ingrese monto" required>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">📂 Categoría</label>
-      <select name="categoria" class="form-select" required>
-        <option value="">-- Selecciona --</option>
-        <option>Comida</option>
-        <option>Transporte</option>
-        <option>Entretenimiento</option>
-        <option>Compras</option>
-        <option>Salud</option>
-        <option>Educación</option>
-      </select>
+      <label class="form-label">📝 Descripción</label>
+      <input type="text" class="form-control" name="descripcion" placeholder="Ej: sueldo, freelance, ventas">
     </div>
 
-    <div class="mb-3">
-      <label class="form-label">📝 Descripción (opcional)</label>
-      <input type="text" name="descripcion" class="form-control" placeholder="Ej: cena, taxi, cine">
-    </div>
-
-    <button type="submit" class="btn btn-primary w-100 btn-rounded">
-      <i class="fa fa-save"></i> Guardar gasto
+    <button class="btn btn-primary w-100 btn-rounded">
+      <i class="fa fa-save"></i> Guardar ingreso
     </button>
 
   </form>
 
   <div class="nota">
-    ✨ Cada gasto que registras te acerca más a tu meta.
+    ✅ Mantén tus ingresos al día para calcular mejores metas.
   </div>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
