@@ -1,124 +1,42 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Registrar Gasto | AHORRA+</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'layout.html' %}
+{% block title %}Registrar Gasto{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+<div class="col-md-8 col-lg-6">
+<div class="card p-4 shadow-sm">
+<h4 class="mb-3">Registrar Gasto</h4>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- FontAwesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-  <style>
-    body {
-      background: linear-gradient(135deg, #6e52d9, #9271ff);
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-    }
-
-    .card-form {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,.15);
-      max-width: 420px;
-      margin: 80px auto;
-    }
-
-    .btn-rounded {
-      border-radius: 18px;
-    }
-
-    .form-control, .form-select {
-      border-radius: 12px;
-      font-size: 15px;
-    }
-
-    .titulo {
-      text-align: center;
-      font-weight: bold;
-      color: #6e52d9;
-      margin-bottom: 20px;
-    }
-
-    .nota {
-      text-align: center;
-      margin-top: 15px;
-      font-size: 13px;
-      color: #777;
-    }
-  </style>
-</head>
-
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-  <a class="navbar-brand" href="/">💰 AHORRA+</a>
-
-  <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div id="menu" class="collapse navbar-collapse justify-content-between">
-
-    <div class="navbar-nav">
-      <a class="nav-link" href="/"><i class="fa fa-home"></i> Inicio</a>
-      <a class="nav-link" href="/gastos"><i class="fa fa-wallet"></i> Gastos</a>
-      <a class="nav-link active" href="/gastos/registrar"><i class="fa fa-plus"></i> Nuevo Gasto</a>
-      <a class="nav-link" href="/ingresos"><i class="fa fa-coins"></i> Ingresos</a>
-      <a class="nav-link" href="/estadisticas"><i class="fa fa-chart-bar"></i> Estadísticas</a>
-      <a class="nav-link" href="/meta"><i class="fa fa-bullseye"></i> Meta</a>
-    </div>
-
-    <a href="/logout" class="btn btn-danger btn-sm btn-rounded">
-      <i class="fa fa-sign-out-alt"></i> Salir
-    </a>
-
-  </div>
-</nav>
-
-<div class="card-form">
-  <h3 class="titulo">Registrar Gasto</h3>
-
-  <form method="POST" action="/gastos/registrar">
+<form method="POST" action="/gastos/registrar">
 
     <div class="mb-3">
-      <label class="form-label">💰 Monto</label>
-      <input type="number" step="0.01" name="monto" class="form-control" placeholder="0.00" required>
+        <label class="form-label">Monto (S/)</label>
+        <input type="number" step="0.01" name="monto" class="form-control" required>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">📂 Categoría</label>
-      <select name="categoria" class="form-select" required>
-        <option value="">-- Selecciona --</option>
-        <option>Comida</option>
-        <option>Transporte</option>
-        <option>Entretenimiento</option>
-        <option>Compras</option>
-        <option>Salud</option>
-        <option>Educación</option>
-      </select>
+        <label class="form-label">Categoría</label>
+        <select name="categoria" class="form-select" required>
+            <option value="" disabled selected>Seleccionar categoría</option>
+            <option value="Alimentos">Alimentos</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Servicios">Servicios</option>
+            <option value="Educación">Educación</option>
+            <option value="Salud">Salud</option>
+            <option value="Entretenimiento">Entretenimiento</option>
+            <option value="Otros">Otros</option>
+        </select>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">📝 Descripción (opcional)</label>
-      <input type="text" name="descripcion" class="form-control" placeholder="Ej: cena, taxi, cine">
+        <label class="form-label">Descripción</label>
+        <input type="text" name="descripcion" class="form-control">
     </div>
 
-    <button type="submit" class="btn btn-primary w-100 btn-rounded">
-      <i class="fa fa-save"></i> Guardar gasto
-    </button>
+    <button class="btn btn-primary w-100">Registrar</button>
 
-  </form>
-
-  <div class="nota">
-    ✨ Cada gasto que registras te acerca más a tu meta.
-  </div>
+</form>
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+</div>
+</div>
+{% endblock %}

@@ -1,19 +1,47 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Registro</title>
-</head>
-<body>
-    <h1>Registro de Usuario</h1>
-    <form action="/registro" method="post">
-        Nombre: <input type="text" name="nombre" required><br>
-        Correo: <input type="email" name="correo" required><br>
-        Contraseña: <input type="password" name="contrasena" required><br>
-        Teléfono: <input type="text" name="telefono"><br>
-        DNI: <input type="text" name="dni"><br>
-        <button type="submit">Registrar</button>
-    </form>
-    <a href="/login">Ir a login</a>
-</body>
-</html>
+{% extends 'layout.html' %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+<div class="col-md-7 col-lg-6">
+<div class="card p-4 shadow-sm">
+<h4 class="mb-3">Crear cuenta</h4>
+<form method="POST" action="/registro">
+<div class="row g-2">
+<div class="col-md-6">
+<label class="form-label">Nombre</label>
+<input type="text" name="nombre" class="form-control" required>
+</div>
+<div class="col-md-6">
+<label class="form-label">Teléfono</label>
+<input type="text" name="telefono" class="form-control" required>
+</div>
+</div>
+
+
+<div class="row g-2 mt-2">
+<div class="col-md-6">
+<label class="form-label">Correo</label>
+<input type="email" name="correo" class="form-control" required>
+</div>
+<div class="col-md-6">
+<label class="form-label">DNI</label>
+<input type="text" name="dni" class="form-control" required>
+</div>
+</div>
+
+
+<div class="mt-3">
+<label class="form-label">Contraseña</label>
+<input type="password" name="contrasena" class="form-control" required>
+</div>
+
+
+<button class="btn btn-success w-100 mt-3">Crear cuenta</button>
+</form>
+
+
+<p class="mt-3 text-center">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+</div>
+</div>
+</div>
+{% endblock %}
