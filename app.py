@@ -10,9 +10,9 @@ from funciones import promedio_gastos
 app = Flask(__name__)
 app.secret_key = "clave_secreta_123"
 
-DB_NAME = "ahorrosdb1"
+DB_NAME = "ahorrosdb"
 DB_USER = "root"
-DB_PASS = "Iece5728"
+DB_PASS = "Root2003"
 DB_HOST = "localhost"
 
 
