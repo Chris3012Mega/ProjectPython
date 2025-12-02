@@ -12,7 +12,7 @@ app.secret_key = "clave_secreta_123"
 
 DB_NAME = "ahorrosdb"
 DB_USER = "root"
-DB_PASS = "Root2003"
+DB_PASS = "root"
 DB_HOST = "localhost"
 
 

@@ -1,29 +1,62 @@
 {% extends 'layout.html' %}
-{% block title %}Inicio - Ahorros{% endblock %}
+{% block title %}Inicio - Tu Asistente Financiero Personal{% endblock %}
 {% block content %}
-<div class="row align-items-center">
-<div class="col-lg-6">
-<h1 class="display-5">Ahorra mejor, vive mejor</h1>
-<p class="lead">Controla tus ingresos y gastos, fija metas y revisa tus estadísticas mensuales.</p>
-
-
-{% if session.get('nombre') %}
-<a href="/gastos" class="btn btn-primary me-2">Mi Banca</a>
-<a href="/estadisticas" class="btn btn-outline-primary">Ver estadísticas</a>
-{% else %}
-<a href="/registro" class="btn btn-primary me-2">Crear cuenta</a>
-<a href="/login" class="btn btn-outline-primary">Iniciar sesión</a>
-{% endif %}
+<div class="container-fluid bg-light p-5 mb-5 text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Transforma tu Futuro Financiero</h1>
+        <p class="lead col-md-8 mx-auto">
+            Toma el control total de tus finanzas. Con nuestra plataforma, podrás registrar tus ingresos y gastos de forma intuitiva, establecer metas de ahorro realistas y visualizar tu progreso con gráficos interactivos y modernos. Empieza hoy a construir un futuro financiero más sólido y seguro.
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+            {% if session.get('nombre') %}
+                <a href="/gastos" class="btn btn-primary btn-lg px-4 gap-3">Acceder a mi Panel</a>
+                <a href="/estadisticas" class="btn btn-outline-secondary btn-lg px-4">Ver Estadísticas</a>
+            {% else %}
+                <a href="/registro" class="btn btn-primary btn-lg px-4 gap-3">Crea tu Cuenta Gratis</a>
+                <a href="/login" class="btn btn-outline-secondary btn-lg px-4">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
+<div class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom text-center">Herramientas para tu Éxito Financiero</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+            <div class="icon-square bg-primary text-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <i class="bi bi-wallet2"></i>
+            </div>
+            <div>
+                <h3 class="fs-2">Control de Gastos</h3>
+                <p>Registra cada movimiento, categoriza tus gastos y descubre exactamente a dónde va tu dinero. La claridad es el primer paso hacia el ahorro.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div class="icon-square bg-success text-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <i class="bi bi-bullseye"></i>
+            </div>
+            <div>
+                <h3 class="fs-2">Metas de Ahorro</h3>
+                <p>Define tus objetivos financieros, desde un fondo de emergencia hasta el viaje de tus sueños. Sigue tu progreso y mantente motivado.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div class="icon-square bg-info text-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <i class="bi bi-bar-chart-line-fill"></i>
+            </div>
+            <div>
+                <h3 class="fs-2">Estadísticas Claras</h3>
+                <p>Visualiza tus hábitos financieros con gráficos y reportes fáciles de entender. Toma decisiones informadas para optimizar tus finanzas.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="col-lg-6 d-none d-lg-block">
-<div class="card shadow-sm">
-<div class="card-body">
-<h5 class="card-title">Resumen (ejemplo)</h5>
-<p class="card-text">Tu panel mostrará ingresos, gastos y progreso hacia tu meta mensual.</p>
-</div>
-</div>
-</div>
-</div>
+<style>
+.icon-square {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .75rem;
+}
+</style>
 {% endblock %}
