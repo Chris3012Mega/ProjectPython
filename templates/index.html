@@ -1,62 +1,73 @@
 {% extends 'layout.html' %}
 {% block title %}Inicio - Tu Asistente Financiero Personal{% endblock %}
 {% block content %}
-<div class="container-fluid bg-light p-5 mb-5 text-center">
+<div class="container-fluid bg-light pt-5 pb-5 fade-in">
     <div class="container">
-        <h1 class="display-4 fw-bold">Transforma tu Futuro Financiero</h1>
-        <p class="lead col-md-8 mx-auto">
-            Toma el control total de tus finanzas. Con nuestra plataforma, podrás registrar tus ingresos y gastos de forma intuitiva, establecer metas de ahorro realistas y visualizar tu progreso con gráficos interactivos y modernos. Empieza hoy a construir un futuro financiero más sólido y seguro.
-        </p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
-            {% if session.get('nombre') %}
-                <a href="/gastos" class="btn btn-primary btn-lg px-4 gap-3">Acceder a mi Panel</a>
-                <a href="/estadisticas" class="btn btn-outline-secondary btn-lg px-4">Ver Estadísticas</a>
-            {% else %}
-                <a href="/registro" class="btn btn-primary btn-lg px-4 gap-3">Crea tu Cuenta Gratis</a>
-                <a href="/login" class="btn btn-outline-secondary btn-lg px-4">Iniciar Sesión</a>
-            {% endif %}
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-4 fw-bold shake">Transforma tu Futuro Financiero</h1>
+                <p class="lead my-4">
+                    Toma el control total de tus finanzas. Con nuestra plataforma, podrás registrar tus ingresos y gastos de forma intuitiva, establecer metas de ahorro realistas y visualizar tu progreso con gráficos interactivos y modernos. Empieza hoy a construir un futuro financiero más sólido y seguro.
+                </p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-lg-start mb-4 mb-lg-0">
+                    {% if session.get('nombre') %}
+                        <a href="/gastos" class="btn btn-primary btn-lg px-4 gap-3">Acceder a mi Panel</a>
+                        <a href="/estadisticas" class="btn btn-outline-secondary btn-lg px-4">Ver Estadísticas</a>
+                    {% else %}
+                        <a href="/registro" class="btn btn-primary btn-lg px-4 gap-3">Crea tu Cuenta Gratis</a>
+                        <a href="/login" class="btn btn-outline-secondary btn-lg px-4">Iniciar Sesión</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- Imagen para la sección Hero -->
+                <img src="https://pqs.pe/wp-content/uploads/2017/03/173462_9fef_4-800x450.jpg" class="img-fluid rounded-3 shadow-sm" alt="Ilustración de finanzas personales">
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom text-center">Herramientas para tu Éxito Financiero</h2>
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-        <div class="col d-flex align-items-start">
-            <div class="icon-square bg-primary text-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                <i class="bi bi-wallet2"></i>
-            </div>
-            <div>
-                <h3 class="fs-2">Control de Gastos</h3>
-                <p>Registra cada movimiento, categoriza tus gastos y descubre exactamente a dónde va tu dinero. La claridad es el primer paso hacia el ahorro.</p>
-            </div>
+    <h2 class="pb-2 border-bottom text-center mb-5">Herramientas para tu Éxito Financiero</h2>
+
+    <!-- Feature 1 -->
+    <div class="row featurette align-items-center mb-5">
+        <div class="col-md-7">
+            <h3 class="featurette-heading fw-normal lh-1">Control de Gastos e Ingresos. <span class="text-muted">Todo en un solo lugar.</span></h3>
+            <p class="lead">Registra cada movimiento, categoriza tus gastos y descubre exactamente a dónde va tu dinero. La claridad es el primer paso hacia el ahorro inteligente.</p>
         </div>
-        <div class="col d-flex align-items-start">
-            <div class="icon-square bg-success text-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                <i class="bi bi-bullseye"></i>
-            </div>
-            <div>
-                <h3 class="fs-2">Metas de Ahorro</h3>
-                <p>Define tus objetivos financieros, desde un fondo de emergencia hasta el viaje de tus sueños. Sigue tu progreso y mantente motivado.</p>
-            </div>
+        <div class="col-md-5">
+            <!-- Imagen para Feature 1 -->
+            <img src="https://numdea.com/wp-content/uploads/2019/10/que-son-los-gastos-1024x683.jpg" class="img-fluid rounded-3" alt="Control de gastos" width="500px" height="500px">
         </div>
-        <div class="col d-flex align-items-start">
-            <div class="icon-square bg-info text-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                <i class="bi bi-bar-chart-line-fill"></i>
-            </div>
-            <div>
-                <h3 class="fs-2">Estadísticas Claras</h3>
-                <p>Visualiza tus hábitos financieros con gráficos y reportes fáciles de entender. Toma decisiones informadas para optimizar tus finanzas.</p>
-            </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Feature 2 -->
+    <div class="row featurette align-items-center my-5">
+        <div class="col-md-7 order-md-2">
+            <h3 class="featurette-heading fw-normal lh-1">Metas de Ahorro. <span class="text-muted">Alcanza tus sueños.</span></h3>
+            <p class="lead">Define tus objetivos financieros, desde un fondo de emergencia hasta el viaje de tus sueños. Sigue tu progreso en tiempo real y mantente siempre motivado.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <!-- Imagen para Feature 2 -->
+            <img src="https://coachricardogarza.com/wp-content/uploads/2020/09/negocio-min.jpg" class="img-fluid rounded-3" alt="Metas de ahorro" width="500px" height="500px">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Feature 3 -->
+    <div class="row featurette align-items-center mt-5">
+        <div class="col-md-7">
+            <h3 class="featurette-heading fw-normal lh-1">Estadísticas Claras. <span class="text-muted">Decisiones inteligentes.</span></h3>
+            <p class="lead">Visualiza tus hábitos financieros con gráficos y reportes fáciles de entender. Toma decisiones informadas para optimizar tus finanzas personales y maximizar tu potencial.</p>
+        </div>
+        <div class="col-md-5">
+            <!-- Imagen para Feature 3 -->
+            <img src="https://ecuador.unir.net/wp-content/uploads/sites/8/2024/11/Los-mejores-graficos-estadisticos-para-presentar-datos3.jpg" class="img-fluid rounded-3" alt="Estadísticas financieras" width="500px" height="500px">
         </div>
     </div>
 </div>
-
-<style>
-.icon-square {
-    width: 3rem;
-    height: 3rem;
-    border-radius: .75rem;
-}
-</style>
 {% endblock %}

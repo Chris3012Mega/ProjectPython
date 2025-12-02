@@ -29,3 +29,70 @@ footer {
     text-align: center;
     color: #6c757d;
 }
+
+/* Animación de desvanecimiento para la carga de la página */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animación de desvanecimiento de salida */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-in-out forwards;
+}
+
+/* Animación infinita de sacudida para el título */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
+.shake {
+    animation: shake 2s infinite;
+}
+
+/* Estilos para las tarjetas de ingreso modernas */
+.ingreso-card-modern {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    background-color: #ffffff;
+}
+
+.ingreso-card-modern:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}

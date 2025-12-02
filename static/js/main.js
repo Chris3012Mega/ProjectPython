@@ -1,11 +1,10 @@
-console.log("Main.js cargado correctamente!");
+document.addEventListener('DOMContentLoaded', (event) => {
+    const fadeOutButton = document.getElementById('fade-out-button');
+    const body = document.querySelector('body');
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Ejemplo: animación en alertas
-    const alerts = document.querySelectorAll(".alert");
-    if (alerts.length > 0) {
-        setTimeout(() => {
-            alerts.forEach(a => a.classList.add("fade"));
-        }, 3000);
+    if (fadeOutButton) {
+        fadeOutButton.addEventListener('click', () => {
+            body.classList.add('fade-out');
+        });
     }
 });
